@@ -1,4 +1,4 @@
-#Dependencies
+# Dependencies
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
@@ -97,9 +97,5 @@ def scrape():
         "mars_df": mars_df,
         "hemisphere_image_urls": hemisphere_image_urls
     }
-    
-    return dictionary
-    
-dictionary = scrape()
 
-print(dictionary)
+    return dictionary
