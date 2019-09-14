@@ -31,8 +31,9 @@ def scrape():
 
     article = soup.find("a", class_='button fancybox')
     featured_image = article["data-fancybox-href"]
-    base_url = url.split("/")
-    base_url = base_url[2]
+    base_url = url.split("/spaceimages")
+    base_url = base_url[0]
+    base_url
 
     featured_image_url = base_url + featured_image
 
@@ -50,6 +51,7 @@ def scrape():
     mars_df = pd.read_html(mars_facts)[1]
     mars_df = mars_df.rename(columns={0: "Category", 1: "Value"})
     mars_df = mars_df.set_index("Category")
+    mars_df_html = mars_df.to_html()
 
     usgs_url = "https://astrogeology.usgs.gov/maps/mars-viking-hemisphere-point-perspectives"
     browser = Browser('chrome', **executable_path, headless=False)
@@ -94,7 +96,7 @@ def scrape():
         "news_p": news_p,
         "featured_image_url": featured_image_url,
         "mars_weather": mars_weather,
-        "mars_df": mars_df,
+        # "mars_df": mars_df_html,
         "hemisphere_image_urls": hemisphere_image_urls
     }
 
